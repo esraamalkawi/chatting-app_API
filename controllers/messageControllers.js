@@ -9,17 +9,16 @@ exports.fetchMessage = async (messageId, next) => {
   }
 };
 
-
 exports.messageList = async (req, res, next) => {
-    try {
-      const message = await Message.findAll({
-        attributes: { exclude: ["createdAt", "updatedAt"] },
-      });
-      res.json(message);
-    } catch (error) {
-      next(error);
-    }
-  };
+  try {
+    const message = await Message.findAll({
+      attributes: { exclude: ["createdAt", "updatedAt"] },
+    });
+    res.json(message);
+  } catch (error) {
+    next(error);
+  }
+};
 
 exports.messageCreate = async (req, res, next) => {
   try {
@@ -42,22 +41,3 @@ exports.messageDelete = async (req, res, next) => {
     next(error);
   }
 };
-
-exports.messageUpdate = async (req, res, next) => {
-    try {
-    //   if (req.shop.userId === req.user.id) {
-        if (req.file) {
-          req.body.image = `http://${req.get("host")}/${req.file.path}`;
-        }
-        await req.message.update(req.body);
-        res.status(201).json(req.message);
-    //   } else {
-    //     next({
-    //       status: 401,
-    //       message: "unautharized",
-    //     });
-    //   }
-    } catch (error) {
-      next(error);
-    }
-  };
