@@ -1,5 +1,6 @@
 const express = require("express");
 
+
 // const productRoutes = require("./routes/products");
 // const shopRoutes = require("./routes/shops");
 // const userRoutes = require("./routes/users");
@@ -9,7 +10,7 @@ const express = require("express");
 const cors = require("cors");
 const path = require("path");
 
-//esraaaaa
+
 
 const passport = require("passport");
 const { localStrategy, jwtStrategy } = require("./middleware/passport");
@@ -41,3 +42,5 @@ app.use((req, res, next) => {
 
 
 app.listen(8000);
+
+
