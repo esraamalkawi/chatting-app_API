@@ -7,44 +7,36 @@ const router = express.Router();
 const {
   chatDelete,
   chatList,
-  chatUpdate,
+
+  chatCreate,
   fetchChat,
 } = require("../controllers/chatControllers");
 
-
 router.param("chatId", async (req, res, next, chatId) => {
-    const chat = await fetchChat(chatId, next);
-    if (chat) {
-      req.chat = chat;
-      next();
-    } else {
-      const err = new Error("Chat Not Found");
-      err.status = 404;
-      next(err);
-    }
-  });
-
+  const chat = await fetchChat(chatId, next);
+  if (chat) {
+    req.chat = chat;
+    next();
+  } else {
+    const err = new Error("Chat Not Found");
+    err.status = 404;
+    next(err);
+  }
+});
 
 router.get("/", chatList);
 
 router.post(
-    "/chats",
-    passport.authenticate("jwt", { session: false }),
-    upload.single("image"),
-    chatCreate
-  );
+  "/chats",
+  passport.authenticate("jwt", { session: false }),
+  upload.single("image"),
+  chatCreate
+);
 
 router.delete(
   "/:chatId",
   passport.authenticate("jwt", { session: false }),
   chatDelete
-);
-
-router.put(
-  "/:chatId",
-  passport.authenticate("jwt", { session: false }),
-  upload.single("image"),
-  chatUpdate
 );
 
 module.exports = router;

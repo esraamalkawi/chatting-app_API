@@ -2,8 +2,8 @@ const express = require("express");
 
 
 const userRoutes = require("./routes/userRoute");
-const messageRoutes = require("./routes/messages");
-const chatRoutes = require("./routes/chats");
+const messageRoutes = require("./routes/messageRoute");
+const chatRoutes = require("./routes/chatRoute");
 
 
 const passport = require("passport");
@@ -13,11 +13,6 @@ const { localStrategy, jwtStrategy } = require("./middleware/passport");
 
 const cors = require("cors");
 const path = require("path");
-
-
-
-const passport = require("passport");
-const { localStrategy, jwtStrategy } = require("./middleware/passport");
 
 const app = express();
 
