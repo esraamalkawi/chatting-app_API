@@ -1,5 +1,11 @@
 const express = require("express");
+
+
 const userRoutes = require("./routes/userRoute");
+const messageRoutes = require("./routes/messages");
+const chatRoutes = require("./routes/chats");
+
+
 const passport = require("passport");
 const { localStrategy, jwtStrategy } = require("./middleware/passport");
 
@@ -24,6 +30,10 @@ passport.use(jwtStrategy);
 
 app.use(userRoutes);
 
+
+app.use("/messages", messageRoutes);
+app.use("/chats", chatRoutes);
+app.use("/media", express.static(path.join(__dirname, "media")));
 
 
 app.use((err, req, res, next) => {
