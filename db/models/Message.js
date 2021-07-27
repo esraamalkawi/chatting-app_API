@@ -1,3 +1,4 @@
+const SequelizeSlugify = require("sequelize-slugify");
 module.exports = (sequelize, DataTypes) => {
     const Message = sequelize.define("Message", {
       message: {
@@ -17,6 +18,15 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
          });
+         SequelizeSlugify.slugifyModel(message, {
+          source: ["name"],
+        });
+        
+        message.associate = (models) => {
+          models.Chat.hasMany(message,{foreignKey: "chatId",as: "message",allowNull: false});
+          message.belongsTo(models.Chat,{foreignKey:"chatId"})
+        };
+        
     return Message;
 
      
