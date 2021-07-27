@@ -35,8 +35,15 @@ exports.chatCreate = async (req, res, next) => {
 
 exports.chatDelete = async (req, res, next) => {
   try {
-    await req.chat.destroy();
-    res.status(204).end();
+    if (req.chat.userId === req.user.id) {
+      await req.chat.destroy();
+      res.status(204).end();
+    } else {
+      next({
+        status: 401,
+        message: "unautharized",
+      });
+    }
   } catch (error) {
     next(error);
   }
