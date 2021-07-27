@@ -26,7 +26,7 @@ router.param("messageId", async (req, res, next, messageId) => {
 router.get("/", messageList);
 
 router.post(
-  "/messages",
+  "/",
   passport.authenticate("jwt", { session: false }),
   upload.single("image"),
   messageCreate

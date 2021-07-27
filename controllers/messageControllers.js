@@ -11,10 +11,10 @@ exports.fetchMessage = async (messageId, next) => {
 
 exports.messageList = async (req, res, next) => {
   try {
-    const message = await Message.findAll({
+    const messages = await Message.findAll({
       attributes: { exclude: ["createdAt", "updatedAt"] },
     });
-    res.json(message);
+    res.json(messages);
   } catch (error) {
     next(error);
   }

@@ -1,4 +1,4 @@
-const { Chat } = require("../db/models");
+const { Chat, UserChat } = require("../db/models");
 
 exports.fetchChat = async (chatId, next) => {
   try {
@@ -23,10 +23,15 @@ exports.chatList = async (req, res, next) => {
 exports.chatCreate = async (req, res, next) => {
   try {
     if (req.file) {
-      req.body.image = `http://${req.get("host")}/${req.file.path}`;
+      req.body.image = `http://${req.get("host")}/media/${req.file.filename}`;
     }
-    req.body.userId = req.user.id;
+
     const newChat = await Chat.create(req.body);
+    const idsArry = req.body.users.map(
+      (e) => (e = { userId: e, chatId: newChat.id })
+    );
+    // console.log(idsArry);
+    UserChat.bulkCreate(idsArry);
     res.status(201).json(newChat);
   } catch (error) {
     next(error);
@@ -35,15 +40,8 @@ exports.chatCreate = async (req, res, next) => {
 
 exports.chatDelete = async (req, res, next) => {
   try {
-    if (req.chat.userId === req.user.id) {
-      await req.chat.destroy();
-      res.status(204).end();
-    } else {
-      next({
-        status: 401,
-        message: "unautharized",
-      });
-    }
+    await req.chat.destroy();
+    res.status(204).end();
   } catch (error) {
     next(error);
   }
