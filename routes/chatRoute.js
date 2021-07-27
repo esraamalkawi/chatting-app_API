@@ -27,7 +27,7 @@ router.param("chatId", async (req, res, next, chatId) => {
 router.get("/", chatList);
 
 router.post(
-  "/chats",
+  "/",
   passport.authenticate("jwt", { session: false }),
   upload.single("image"),
   chatCreate
