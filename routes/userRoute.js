@@ -1,13 +1,9 @@
 const express = require("express");
 const passport = require("passport");
-const upload = require("../middleware/multer");
+const upload = require("../middleware/multer"); //Remove unused import
 const router = express.Router();
 
-const {
-  signup,
-  signin,
-  
-} = require("../controllers/userController");
+const { signup, signin } = require("../controllers/userController");
 
 router.post(
   "/signin",

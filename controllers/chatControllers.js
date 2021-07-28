@@ -27,10 +27,11 @@ exports.chatCreate = async (req, res, next) => {
     }
 
     const newChat = await Chat.create(req.body);
+    //Rename to idsArray
     const idsArry = req.body.users.map(
-      (e) => (e = { userId: e, chatId: newChat.id })
+      (e) => (e = { userId: e, chatId: newChat.id }) //Rename e to user
     );
-    // console.log(idsArry);
+    // console.log(idsArry); //Remove unused code
     UserChat.bulkCreate(idsArry);
     res.status(201).json(newChat);
   } catch (error) {

@@ -7,7 +7,6 @@ const router = express.Router();
 const {
   chatDelete,
   chatList,
-
   chatCreate,
   fetchChat,
 } = require("../controllers/chatControllers");

@@ -10,12 +10,13 @@ exports.signup = async (req, res, next) => {
     req.body.password = hashedPassword;
     const newUser = await User.create(req.body);
     const token = generateToken(newUser);
-    res.status(201).json({ message: "New user created" });
+    res.status(201).json({ message: "New user created" }); //Return token here
   } catch (error) {
     next(error);
   }
 };
 
+//Remove next
 exports.signin = async (req, res, next) => {
   const token = generateToken(req.user);
   res.json({ token });
