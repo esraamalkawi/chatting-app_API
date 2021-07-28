@@ -1,4 +1,33 @@
 const express = require("express");
+// const Pusher = require("pusher");
+
+// const pusher = new Pusher({
+//   appId: "1241214",
+//   key: "4af99bfc517011b518e0",
+//   secret: "b5170f4d96ab324a5265",
+//   cluster: "eu",
+//   useTLS: true
+// });
+
+// pusher.trigger("message", "chat", {
+//   message: "hello world"
+// });
+
+// const msgCollection=db.collection("message")
+// const changeStream = msgCollection.watch();
+// changeStream.on('change',(change)=>{
+//   console.log(`change occured`,change)
+// })
+// if(change.operationType ==="insert"){
+//   const messageDetails=change.fullDocument;
+//   pusher.trigger("message","inserted",{
+//     name: messageDetails.user,
+//     message: messageDetails.message
+//   }
+//   )
+// }else{
+//   console.log("enter triggering pusher")
+// }
 
 
 const userRoutes = require("./routes/userRoute");
