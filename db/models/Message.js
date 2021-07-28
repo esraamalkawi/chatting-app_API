@@ -18,13 +18,13 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
          });
-         SequelizeSlugify.slugifyModel(message, {
+         SequelizeSlugify.slugifyModel(Message, {
           source: ["name"],
         });
         
-        message.associate = (models) => {
-          models.Chat.hasMany(message,{foreignKey: "chatId",as: "message",allowNull: false});
-          message.belongsTo(models.Chat,{foreignKey:"chatId"})
+        Message.associate = (models) => {
+          models.Chat.hasMany(Message,{foreignKey: "chatId",as: "message",allowNull: false});
+          Message.belongsTo(models.Chat,{foreignKey:"chatId"})
         };
         
     return Message;
