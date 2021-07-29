@@ -5,7 +5,7 @@ const { User } = require("../db/models");
 
 const bcrypt = require("bcrypt");
 
-const { JWT_SECRET } = require("../configKeys/keys");
+const { JWT_SECRET } = require("../config/keys");
 
 exports.localStrategy = new LocalStrategy(async (username, password, done) => {
   try {
