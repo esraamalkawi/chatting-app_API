@@ -40,6 +40,7 @@ exports.chatCreate = async (req, res, next) => {
 
 exports.chatDelete = async (req, res, next) => {
   try {
+    await UserChat.destroy({ where: { chatId: req.chat.id } });
     await req.chat.destroy();
     res.status(204).end();
   } catch (error) {

@@ -30,6 +30,8 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "chatId",
       as: "message",
       allowNull: false,
+      onDelete: "cascade",
+      hooks: true,
     });
     Message.belongsTo(models.Chat, { foreignKey: "chatId" });
   };
