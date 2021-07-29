@@ -1,7 +1,7 @@
 const { User } = require("../db/models");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { JWT_EXPIRATION_MS, JWT_SECRET } = require("../configKeys/keys");
+const { JWT_EXPIRATION_MS, JWT_SECRET } = require("../config/keys");
 
 exports.signup = async (req, res, next) => {
   try {
@@ -10,13 +10,13 @@ exports.signup = async (req, res, next) => {
     req.body.password = hashedPassword;
     const newUser = await User.create(req.body);
     const token = generateToken(newUser);
-    res.status(201).json({ message: "New user created" });
+    res.status(201).json(token);
   } catch (error) {
     next(error);
   }
 };
 
-exports.signin = async (req, res, next) => {
+exports.signin = async (req, res) => {
   const token = generateToken(req.user);
   res.json({ token });
 };

@@ -28,9 +28,9 @@ exports.chatCreate = async (req, res, next) => {
 
     const newChat = await Chat.create(req.body);
     const idsArry = req.body.users.map(
-      (e) => (e = { userId: e, chatId: newChat.id })
+      (user) => (user = { userId: user, chatId: newChat.id })
     );
-    // console.log(idsArry);
+
     UserChat.bulkCreate(idsArry);
     res.status(201).json(newChat);
   } catch (error) {

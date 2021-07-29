@@ -24,6 +24,7 @@ module.exports = (sequelize, DataTypes) => {
         
        
  
+
   Message.associate = (models) => {
     models.Chat.hasMany(Message, {
       foreignKey: "chatId",
