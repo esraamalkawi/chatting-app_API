@@ -3,7 +3,7 @@ const passport = require("passport");
 
 const router = express.Router();
 
-const { signup, signin } = require("../controllers/userController");
+const { signup, signin, usersList } = require("../controllers/userController");
 
 router.post(
   "/signin",
@@ -11,5 +11,10 @@ router.post(
   signin
 );
 router.post("/signup", signup);
+router.get(
+  "/fetch",
+  passport.authenticate("jwt", { session: false }),
+  usersList
+);
 
 module.exports = router;
