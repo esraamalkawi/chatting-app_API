@@ -22,12 +22,17 @@ exports.chatList = async (req, res, next) => {
 
 exports.chatCreate = async (req, res, next) => {
   try {
+    let users = JSON.parse(req.body.users);
+    console.log(users);
     if (req.file) {
       req.body.image = `http://${req.get("host")}/media/${req.file.filename}`;
     }
 
+    req.body = { name: req.body.name, image: req.body.image };
+
     const newChat = await Chat.create(req.body);
-    const idsArry = req.body.users.map(
+    console.log(req.body.users);
+    const idsArry = users.map(
       (user) => (user = { userId: user, chatId: newChat.id })
     );
 
