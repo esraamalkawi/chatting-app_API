@@ -25,6 +25,8 @@ router.param("messageId", async (req, res, next, messageId) => {
 
 router.get("/", messageList);
 
+// REVIEW: the chat ID should be in the URL
+// `/chats/:chatId/mesagges`
 router.post(
   "/",
   passport.authenticate("jwt", { session: false }),

@@ -11,6 +11,7 @@ router.post(
   signin
 );
 router.post("/signup", signup);
+// REVIEW: Don't put a verb for your route name. Change it.
 router.get(
   "/fetch",
   passport.authenticate("jwt", { session: false }),

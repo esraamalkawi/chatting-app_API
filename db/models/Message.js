@@ -1,29 +1,27 @@
 const SequelizeSlugify = require("sequelize-slugify");
 module.exports = (sequelize, DataTypes) => {
-    const Message = sequelize.define("Message", {
-      message: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      name: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      timestamp: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      received: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-      },
-         });
-         SequelizeSlugify.slugifyModel(Message, {
-          source: ["name"],
-        });
-        
-       
- 
+  const Message = sequelize.define("Message", {
+    message: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    // REVIEW: why do you need the timestamp?
+    timestamp: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    received: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
+  });
+  SequelizeSlugify.slugifyModel(Message, {
+    source: ["name"],
+  });
 
   Message.associate = (models) => {
     models.Chat.hasMany(Message, {

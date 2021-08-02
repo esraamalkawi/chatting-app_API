@@ -5,7 +5,6 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       unique: true,
     },
-
     mobile: {
       type: DataTypes.INTEGER,
       unique: true,

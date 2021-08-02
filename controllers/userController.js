@@ -31,6 +31,8 @@ const generateToken = (user) => {
   return token;
 };
 
+// REVIEW: for fuuture reference
+// Keep the authentication routes and controllers in different files
 exports.usersList = async (req, res, next) => {
   try {
     const users = await User.findAll({
