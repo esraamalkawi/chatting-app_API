@@ -8,8 +8,18 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
       },
-      input: {
+      message: {
         type: Sequelize.STRING,
+      },
+      image: {
+        type: Sequelize.STRING,
+      },
+      timestamp: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      received: {
+        type: Sequelize.BOOLEAN,
         allowNull: false,
       },
       updatedAt: {
