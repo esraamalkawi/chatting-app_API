@@ -23,6 +23,8 @@ module.exports = (sequelize, DataTypes) => {
   SequelizeSlugify.slugifyModel(Message, {
     source: ["name"],
   });
+ 
+ 
 
   Message.associate = (models) => {
     models.Chat.hasMany(Message, {

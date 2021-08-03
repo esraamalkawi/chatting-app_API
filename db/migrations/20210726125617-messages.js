@@ -22,6 +22,14 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         allowNull: false,
       },
+      timestamp: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      received: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+      },
       updatedAt: {
         type: Sequelize.DATE,
         allowNull: false,
