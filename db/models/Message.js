@@ -3,7 +3,9 @@ module.exports = (sequelize, DataTypes) => {
   const Message = sequelize.define("Message", {
     message: {
       type: DataTypes.STRING,
-      allowNull: false,
+    },
+    image: {
+      type: DataTypes.STRING,
     },
     name: {
       type: DataTypes.STRING,
@@ -21,9 +23,8 @@ module.exports = (sequelize, DataTypes) => {
   SequelizeSlugify.slugifyModel(Message, {
     source: ["name"],
   });
-
-
-
+ 
+ 
 
   Message.associate = (models) => {
     models.Chat.hasMany(Message, {
