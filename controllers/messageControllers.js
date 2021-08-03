@@ -23,7 +23,7 @@ exports.messageList = async (req, res, next) => {
 exports.messageCreate = async (req, res, next) => {
   try {
     if (req.file) {
-      req.body.image = `http://${req.get("host")}/${req.file.path}`;
+      req.body.image = `http://${req.get("host")}/media/${req.file.filename}`;
     }
     const newMessage = await Message.create(req.body);
     res.status(201).json(newMessage);

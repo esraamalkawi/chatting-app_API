@@ -27,7 +27,11 @@ exports.chatCreate = async (req, res, next) => {
     }
 
     const newChat = await Chat.create(req.body);
-    const idsArry = req.body.users.map(
+    console.log( "here", req.body.users)
+
+    let idsArry = Object.keys(req.body.users)
+    
+    idsArry= idsArry. map(
       (user) => (user = { userId: user, chatId: newChat.id })
     );
 
